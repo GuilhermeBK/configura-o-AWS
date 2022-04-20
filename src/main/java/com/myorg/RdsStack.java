@@ -17,7 +17,7 @@ public class RdsStack extends Stack {
     public RdsStack(final Construct scope, final String id, final StackProps props, Vpc vpc) {
         super(scope, id, props);
 
-        CfnParameter dataBasePassword = CfnParameter.Builder.create(this, "dataBasePassword ")
+        CfnParameter dataBasePassword = CfnParameter.Builder.create(this, "dataBasePassword")
                 .type("String")
                 .description("RDS instance password")
                 .build();
@@ -42,7 +42,7 @@ public class RdsStack extends Stack {
                 .allocatedStorage(10)//10 gb
                 .securityGroups(Collections.singletonList(iSecurityGroup))
                 .vpcSubnets(SubnetSelection.builder()
-                        .subnets(vpc.getPrivateSubnets())
+                        .subnets(vpc.getPublicSubnets())
                         .build())
                 .build();
 
